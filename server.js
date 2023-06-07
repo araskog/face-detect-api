@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require("bcryptjs");
+const bcryptjs = require("bcryptjs");
 const cors = require('cors');
 const knex = require('knex');
 
@@ -35,10 +35,14 @@ app.get('/', (req, res) => {
 });
 
 // Posting json user login information
-app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) });
+app.post("/signin", (req, res) => {
+  signin.handleSignin(req, res, db, bcryptjs);
+});
 
 // Posting json registration information
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt, saltRounds) });
+app.post("/register", (req, res) => {
+  register.handleRegister(req, res, db, bcryptjs, saltRounds);
+});
 
 // When the user looks at their profile -- not yet developed
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)});
